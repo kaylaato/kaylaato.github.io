@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,12 +16,14 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   >
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -28,12 +31,12 @@
     }
 
     :root {
-    --primary: #ff81be;
-    --secondary: #9e4784;
-    --light: #fff0f6;
-    --text: #5b4158;
-    --white: #ffffff;
-    --accent: #ff9fcf;
+      --primary: #ff81be;
+      --secondary: #9e4784;
+      --light: #fff0f6;
+      --text: #5b4158;
+      --white: #ffffff;
+      --accent: #ff9fcf;
     }
 
     html {
@@ -45,19 +48,21 @@
       background: var(--light);
       color: var(--text);
       line-height: 1.7;
+      overflow-x: hidden;
     }
 
     /* Navigation */
+
     header {
-      background: rgba(17, 24, 39, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
 
     nav {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
       display: flex;
       justify-content: space-between;
@@ -67,16 +72,33 @@
 
     .logo {
       color: var(--white);
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 700;
+      letter-spacing: 1px;
     }
 
     .nav-links a {
       color: var(--white);
       text-decoration: none;
       margin-left: 1.5rem;
-      transition: color 0.3s ease;
+      transition: 0.3s ease;
       font-weight: 500;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background: var(--accent);
+      transition: 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .nav-links a:hover {
@@ -84,52 +106,103 @@
     }
 
     /* Hero Section */
+
     .hero {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(
-      135deg,
-      #ffaed6,
-      #ee468c
-    );
-    color: white;
-  }
+      position: relative;
+      min-height: calc(100vh - 65px);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+
+      background: linear-gradient(
+        -45deg,
+        #ffb1d6,
+        #ff81be,
+        #ee468c,
+        #9e4784
+      );
+
+      background-size: 400% 400%;
+      animation: gradientMove 14s ease infinite;
+
+      color: white;
+    }
+
+    /* Glow Effects */
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.45;
+      z-index: 0;
+    }
+
+    .hero::before {
+      width: 350px;
+      height: 350px;
+      background: white;
+      top: -120px;
+      left: -100px;
+      animation: float1 10s ease-in-out infinite;
+    }
+
+    .hero::after {
+      width: 450px;
+      height: 450px;
+      background: #ffb6da;
+      bottom: -180px;
+      right: -120px;
+      animation: float2 12s ease-in-out infinite;
+    }
 
     .hero-content {
-      max-width: 700px;
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      animation: fadeUp 1.2s ease;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 4.2rem;
       margin-bottom: 1rem;
+      font-weight: 700;
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       margin-bottom: 2rem;
     }
 
+    /* Button */
+
     .btn {
       display: inline-block;
-      padding: 0.9rem 1.6rem;
+      padding: 0.95rem 1.8rem;
       background: white;
       color: var(--primary);
       text-decoration: none;
       border-radius: 50px;
       font-weight: 600;
-      transition: transform 0.3s ease;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .btn:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(255,255,255,0.3);
     }
 
     /* Sections */
+
     section {
       max-width: 1100px;
       margin: auto;
@@ -138,7 +211,7 @@
 
     section h2 {
       text-align: center;
-      font-size: 2.3rem;
+      font-size: 2.5rem;
       margin-bottom: 3rem;
       color: var(--secondary);
       position: relative;
@@ -155,33 +228,43 @@
     }
 
     /* About */
+
     .about {
       text-align: center;
     }
 
     .about p {
-      max-width: 700px;
+      max-width: 750px;
       margin: auto;
       font-size: 1.1rem;
     }
 
-    /* Cards */
+    /* Grid */
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
 
+    /* Cards */
+
     .card {
-      background: white;
+      background: rgba(255,255,255,0.95);
       padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+
+      animation: fadeUp 1s ease;
     }
 
     .card:hover {
-      transform: translateY(-8px);
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
     }
 
     .card h3 {
@@ -196,6 +279,7 @@
     }
 
     /* Credentials */
+
     .credentials ul {
       list-style: none;
       max-width: 700px;
@@ -207,11 +291,18 @@
       margin-bottom: 1rem;
       padding: 1rem;
       border-left: 5px solid var(--primary);
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+      transition: transform 0.3s ease;
+    }
+
+    .credentials li:hover {
+      transform: translateX(8px);
     }
 
     /* Contact */
+
     .contact {
       text-align: center;
     }
@@ -223,6 +314,7 @@
     }
 
     /* Footer */
+
     footer {
       background: var(--secondary);
       color: white;
@@ -231,11 +323,61 @@
       margin-top: 3rem;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
+    /* Animations */
+
+    @keyframes gradientMove {
+
+      0% {
+        background-position: 0% 50%;
       }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes float1 {
+
+      0%,100% {
+        transform: translateY(0px) translateX(0px);
+      }
+
+      50% {
+        transform: translateY(40px) translateX(30px);
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,100% {
+        transform: translateY(0px) translateX(0px);
+      }
+
+      50% {
+        transform: translateY(-30px) translateX(-40px);
+      }
+    }
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+
+    @media (max-width: 768px) {
 
       nav {
         flex-direction: column;
@@ -248,15 +390,34 @@
       .nav-links a {
         margin: 0 0.7rem;
       }
+
+      .hero {
+        min-height: calc(100vh - 105px);
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+      }
+
+      section h2 {
+        font-size: 2rem;
+      }
     }
+
   </style>
 </head>
 
 <body>
 
   <!-- Navigation -->
+
   <header>
     <nav>
+
       <div class="logo">Kayla To</div>
 
       <div class="nav-links">
@@ -265,89 +426,139 @@
         <a href="#credentials">Credentials</a>
         <a href="#contact">Contact</a>
       </div>
+
     </nav>
   </header>
 
   <!-- Hero Section -->
+
   <section class="hero">
+
     <div class="hero-content">
+
       <h1>Hello, I'm Kayla To</h1>
 
       <p>
-        Passionate Class of 2027 student at Patrick Henry High School with an interest in STEM, healthcare, and public health. 
+        Passionate Class of 2027 student at Patrick Henry High School
+        with interests in STEM, healthcare, and public health.
       </p>
 
       <a href="#projects" class="btn">View My Work</a>
+
     </div>
+
   </section>
 
   <!-- About -->
+
   <section id="about" class="about">
+
     <h2>About Me</h2>
 
     <p>
-      I am high school junior wanting to major in Public Health on a pre-med track. 
-      I am passionate about developing skills and building meaningful projects that make a positive impact.
-      Through my leadership roles as the team manager on my robotics team and president in Key Club, I have built strong coding, graphic design, and communication skills.
+      I am a high school junior wanting to major in Public Health on a
+      pre-med track.
+
+      I am passionate about developing skills and building meaningful
+      projects that make a positive impact.
+
+      Through my leadership roles as the team manager on my robotics team
+      and president in Key Club, I have built strong coding, graphic design,
+      and communication skills.
     </p>
+
   </section>
 
   <!-- Projects -->
+
   <section id="projects">
+
     <h2>Projects</h2>
 
     <div class="grid">
 
       <div class="card">
+
         <h3>Assignment Manager</h3>
 
         <p>
-          A command-line Java application that helps users organize, prioritize, and track assignments using object-oriented programming, sorting algorithms, and scheduling logic.
+          A command-line Java application that helps users organize,
+          prioritize, and track assignments using object-oriented
+          programming, sorting algorithms, and scheduling logic.
         </p>
 
-        <a href="https://github.com/phAPCSAperiod2/final-project-kaylaato.git" target="_blank"> View Project → </a>
+        <a
+          href="https://github.com/phAPCSAperiod2/final-project-kaylaato.git"
+          target="_blank"
+        >
+          View Project →
+        </a>
+
       </div>
 
       <div class="card">
+
         <h3>Virtual Pet Simulator</h3>
 
         <p>
-            An interactive Java-based virtual pet simulator where users
-        adopt and care for marine animals through activities,
-        stat management, and species-specific behaviors.
+          An interactive Java-based virtual pet simulator where users
+          adopt and care for marine animals through activities,
+          stat management, and species-specific behaviors.
         </p>
 
-        <a href="https://github.com/giannaRR/AP-CSA-Virtual-Pet-Project.git" target="_blank">View Project →</a>
+        <a
+          href="https://github.com/giannaRR/AP-CSA-Virtual-Pet-Project.git"
+          target="_blank"
+        >
+          View Project →
+        </a>
+
       </div>
 
     </div>
+
   </section>
 
   <!-- Credentials -->
+
   <section id="credentials" class="credentials">
+
     <h2>Credentials</h2>
 
     <ul>
+
       <li>AP Computer Science Principles</li>
+
       <li>AP Computer Science A</li>
+
     </ul>
+
   </section>
 
   <!-- Contact -->
+
   <section id="contact" class="contact">
+
     <h2>Contact Me</h2>
 
     <p>Email: kaylalistenstomusic@gmail.com</p>
 
     <p>
       GitHub:
-      <a href="https://github.com/kaylaato" target="_blank">
+
+      <a
+        href="https://github.com/kaylaato"
+        target="_blank"
+      >
         github.com/kaylaato
       </a>
+
     </p>
+
   </section>
 
   <!-- Footer -->
+
   <footer>
     <p>© 2026 Kayla To. All rights reserved.</p>
   </footer>
